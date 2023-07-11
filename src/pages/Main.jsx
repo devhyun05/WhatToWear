@@ -12,7 +12,13 @@ const Main = () => {
     const handleChange = (event) => {
         setSearchValue(event.target.value); 
     };
-
+    useEffect(()=>{
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${keyword}&appid=1ea1024f7bfa9bdeb4698e2cbefa3060`)
+        .then(response => response.json())
+        .then(responseData => {
+            console.log(responseData); 
+        });
+    }, [keyword]);
     return (
         <div>
             <div className="search-box-wrapper">
@@ -28,8 +34,8 @@ const Main = () => {
                         </IconButton>
                     ),
                     endAdornment: (
-                        <IconButton>
-                            <ClearIcon onClick={() => setSearchValue("")}/>
+                        <IconButton onClick={() => setSearchValue("")}>
+                            <ClearIcon/>
                         </IconButton>
                     ),
                     style:{
