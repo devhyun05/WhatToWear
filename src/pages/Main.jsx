@@ -8,21 +8,29 @@ import '../App.css';
 const Main = () => {
  
     const [searchValue, setSearchValue] = useState(''); 
+    const [searchResultArray, setSearchResultArray] = useState([]); 
 
     const handleChange = (event) => {
         setSearchValue(event.target.value); 
     };
 
+
     const fetchData = () => {
-        fetch(`http://api.geonames.org/searchJSON?q=${searchValue}*&maxRows=10&username=devhyun05&cities=cities15000`)
+        fetch(`http://api.geonames.org/searchJSON?q=${searchValue}*&maxRows=100&username=devhyun05&cities=cities15000`)
         .then(response => response.json())
         .then(responseData => {
-            console.log(responseData); 
-    
-        }); 
+            let results = responseData.geonames.filter(item => item.toponymName.startsWith(searchValue));
+            setSearchResultArray(results); 
+            console.log(searchResultArray); 
+        })
+        .catch(error => {
+            console.log("Data could not be loaded!"); 
+        })
     };
 
-
+    useEffect(() => {
+        console.log(searchResultArray); 
+    }, [searchResultArray]); // This useEffect will run whenever searchResultArray changes.
     return (
         <div>
             <div className="search-box-wrapper">
