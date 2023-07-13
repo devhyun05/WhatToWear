@@ -6,19 +6,23 @@ import TextField from '@mui/material/TextField';
 import '../App.css'; 
 
 const Main = () => {
-    const [keyword, setKeyword] = useState(''); 
+ 
     const [searchValue, setSearchValue] = useState(''); 
 
     const handleChange = (event) => {
         setSearchValue(event.target.value); 
     };
-    useEffect(()=>{
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${keyword}&appid=1ea1024f7bfa9bdeb4698e2cbefa3060`)
+
+    const fetchData = () => {
+        fetch(`http://api.geonames.org/searchJSON?q=${searchValue}*&maxRows=10&username=devhyun05&cities=cities15000`)
         .then(response => response.json())
         .then(responseData => {
             console.log(responseData); 
-        });
-    }, [keyword]);
+    
+        }); 
+    };
+
+
     return (
         <div>
             <div className="search-box-wrapper">
@@ -29,7 +33,7 @@ const Main = () => {
                 onChange={handleChange}
                 InputProps={{
                     startAdornment: (
-                        <IconButton>
+                        <IconButton onClick={fetchData}>
                             <SearchIcon/>
                         </IconButton>
                     ),
