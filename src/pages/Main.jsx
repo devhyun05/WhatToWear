@@ -19,17 +19,20 @@ const Main = () => {
         fetch(`http://api.geonames.org/searchJSON?q=${searchValue}*&maxRows=100&username=devhyun05&cities=cities15000`)
         .then(response => response.json())
         .then(responseData => {
-            let results = responseData.geonames.filter(item => item.toponymName.startsWith(searchValue));
+            let results = responseData.geonames
+                .filter(item => item.toponymName.startsWith(searchValue))
+                .sort((a, b) => a.toponymName.localeCompare(b.toponymName));
+
             setSearchResultArray(results); 
             console.log(searchResultArray); 
         })
         .catch(error => {
-            console.log("Data could not be loaded!"); 
+            console.log("Error: " + error); 
         })
     };
 
     useEffect(() => {
-        console.log(searchResultArray); 
+        
     }, [searchResultArray]); // This useEffect will run whenever searchResultArray changes.
     return (
         <div>
@@ -53,9 +56,9 @@ const Main = () => {
                     style:{
                         width: '700px', 
                         borderRadius: '20px'
-                    }}}>
-                    
+                    }}}>                
                 </TextField>
+                {searchResultArray.map((item, index) => <p key={index}>{item.toponymName}</p>)}
             </div>
         </div>
     );
