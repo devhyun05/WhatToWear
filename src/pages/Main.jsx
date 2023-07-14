@@ -5,34 +5,48 @@ import ClearIcon from '@mui/icons-material/Clear';
 import TextField from '@mui/material/TextField';
 import '../App.css'; 
 
+// Custom debounce hook
+function useDebounce(value, delay) {
+    const [debouncedValue, setDebouncedValue] = useState(value);
+  
+    useEffect(() => {
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+  
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [value, delay]);
+  
+    return debouncedValue;
+}
+
 const Main = () => {
  
     const [searchValue, setSearchValue] = useState(''); 
     const [searchResultArray, setSearchResultArray] = useState([]); 
-
-    const handleChange = (event) => {
-        const tempValue = event.target.value; 
-        setSearchValue(tempValue); 
-        
-        console.log(tempValue);
-        fetch(`http://api.geonames.org/searchJSON?name_startsWith=${tempValue}&maxRows=10&username=devhyun05&cities=cities15000`)
-        .then(response => response.json())
-        .then(responseData => {
-            let results = responseData.geonames
-                          .filter(item => item.toponymName.startsWith(searchValue))
-                          .sort((a, b) => a.toponymName.localeCompare(b.toponymName));
-
-            setSearchResultArray(results); 
-            console.log(tempValue);
-        })
-        .catch(error => {
-            console.log("Error: " + error); 
-        })
-    };
+    const debouncedSearchValue = useDebounce(searchValue, 500);
 
     useEffect(() => {
-        
-    }, [searchResultArray]); // This useEffect will run whenever searchResultArray changes.
+        if (debouncedSearchValue) {
+            fetch(`http://api.geonames.org/searchJSON?q=${debouncedSearchValue}&maxRows=10&username=devhyun05&cities=cities15000`)
+            .then(response => response.json())
+            .then(responseData => {
+                let results = responseData.geonames
+                              .filter(item => item.toponymName.toLowerCase().startsWith(debouncedSearchValue.toLowerCase()))
+                              .sort((a, b) => a.toponymName.localeCompare(b.toponymName));
+                console.log(responseData); 
+                setSearchResultArray(results); 
+            })
+            .catch(error => {
+                console.log("Error: " + error); 
+            })
+        } else {
+            setSearchResultArray([]);
+        }
+    }, [debouncedSearchValue]);
+
     return (
         <div>
             <div className="search-box-wrapper">
@@ -40,7 +54,7 @@ const Main = () => {
    
                 <TextField variant="outlined" 
                 value={searchValue}
-                onChange={handleChange}
+                onChange={(e) => setSearchValue(e.target.value)}
                 InputProps={{
                     startAdornment: (                   
                         <SearchIcon/>             
@@ -52,10 +66,10 @@ const Main = () => {
                     ),
                     style:{
                         width: '700px', 
-                        borderRadius: '20px'
+                        borderRadius: '20px',
                     }}}>                
                 </TextField>
-                {searchResultArray.map((item, index) => <p key={index}>{item.toponymName}</p>)}
+                {searchResultArray.map((item, index) => <p key={index}>{item.toponymName}, {item.countryCode}</p>)}
             </div>
         </div>
     );
