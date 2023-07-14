@@ -11,20 +11,19 @@ const Main = () => {
     const [searchResultArray, setSearchResultArray] = useState([]); 
 
     const handleChange = (event) => {
-        setSearchValue(event.target.value); 
-    };
-
-
-    const fetchData = () => {
-        fetch(`http://api.geonames.org/searchJSON?q=${searchValue}*&maxRows=100&username=devhyun05&cities=cities15000`)
+        const tempValue = event.target.value; 
+        setSearchValue(tempValue); 
+        
+        console.log(tempValue);
+        fetch(`http://api.geonames.org/searchJSON?name_startsWith=${tempValue}&maxRows=10&username=devhyun05&cities=cities15000`)
         .then(response => response.json())
         .then(responseData => {
             let results = responseData.geonames
-                .filter(item => item.toponymName.startsWith(searchValue))
-                .sort((a, b) => a.toponymName.localeCompare(b.toponymName));
+                          .filter(item => item.toponymName.startsWith(searchValue))
+                          .sort((a, b) => a.toponymName.localeCompare(b.toponymName));
 
             setSearchResultArray(results); 
-            console.log(searchResultArray); 
+            console.log(tempValue);
         })
         .catch(error => {
             console.log("Error: " + error); 
@@ -43,10 +42,8 @@ const Main = () => {
                 value={searchValue}
                 onChange={handleChange}
                 InputProps={{
-                    startAdornment: (
-                        <IconButton onClick={fetchData}>
-                            <SearchIcon/>
-                        </IconButton>
+                    startAdornment: (                   
+                        <SearchIcon/>             
                     ),
                     endAdornment: (
                         <IconButton onClick={() => setSearchValue("")}>
