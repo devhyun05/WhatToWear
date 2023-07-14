@@ -69,7 +69,16 @@ const Main = () => {
                         borderRadius: '20px',
                     }}}>                
                 </TextField>
-                {searchResultArray.map((item, index) => <p key={index}>{item.toponymName}, {item.countryCode}</p>)}
+                {searchResultArray.map((item, index) => (
+                    <p key={index}>
+                        <img 
+                            src={`https://github.com/hjnilsson/country-flags/blob/main/png250px/${item.countryCode.toLowerCase()}.png?raw=true`} 
+                            alt={`Flag of ${item.countryCode}`} 
+                            style={{width: '25px', marginRight: '10px'}}
+                        />
+                        {item.toponymName}, {item.countryCode}
+                    </p>
+                ))}
             </div>
         </div>
     );
