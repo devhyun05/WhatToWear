@@ -1,6 +1,6 @@
 const Outfit = () => {
     return (
-        <div></div>
+        <div>This is Outfit page</div>
     ); 
 }
 
