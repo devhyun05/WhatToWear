@@ -24,11 +24,17 @@ const Outfit = () => {
         }
     }, [cityName]);
     
+    const OutfitImage = ({ src, alt }) => (
+        <div style={{backgroundColor: 'none', width: '15%', height: '15%'}}>
+          <img src={src} alt={alt} style={{width: '100%', height: '100%'}} />
+        </div>
+    );
+
     const weatherClothesCalculate = () => {
         let tempCelsius = Math.round(weatherData.main.temp - 273.15);
 
         if (tempCelsius >= 23 && tempCelsius <= 27 ) {
-            return <img src={process.env.PUBLIC_URL + '/img/t-shirt.jpeg'} alt="T-shirt"/>
+            return <OutfitImage src={process.env.PUBLIC_URL + '/img/t-shirt.png'} alt="T-shirt" />;
         } else {
             return <h1>No image</h1>; 
         }
