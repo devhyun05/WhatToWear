@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'; 
 import { useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
@@ -42,9 +43,9 @@ const Outfit = () => {
 
     return (
         <div>
-            <Box display="flex" justifyContent="center" alignItems="center">
+            <Box style={{display: "flex", justifyContent: "flex-start", alignItems: "center", marginTop: '5%', marginLeft: '5%'}}>
                 {weatherData ? (
-                    <Card>
+                    <Card style={{width: '20%', height: '20%'}}>
                         <CardContent>
                             <Typography variant="h5" component="div" textAlign="center">
                                 {`${weatherData.name}, ${weatherData.sys.country}`}
@@ -71,10 +72,16 @@ const Outfit = () => {
                 )}
             </Box>
 
-            <div style={{display: 'flex', justifyContent: 'center'}}>
+            <motion.div 
+                style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+            >
                 <h1>Today's Outfit</h1>
                 {weatherData && weatherClothesCalculate()}
-            </div>
+            </motion.div>
+
         </div>
     ); 
 }
