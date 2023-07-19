@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
+
 const Outfit = () => {
     const location = useLocation(); 
     const cityName = location.state?.city; 
@@ -22,6 +23,14 @@ const Outfit = () => {
             })
         }
     }, [cityName]);
+    
+    const weatherClothesCalculate = () => {
+        let tempCelsius = Math.round(weatherData.main.temp - 273.15);
+
+        if (tempCelsius >= 23 && tempCelsius <= 27 ) {
+            return <img src={process.env.PUBLIC_URL+"t-shirt.jpeg"} alt="T-shirt"/>
+        }
+    }
 
     return (
         <div>
@@ -56,6 +65,7 @@ const Outfit = () => {
 
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <h1>Today's Outfit</h1>
+                {weatherClothesCalculate()}
             </div>
         </div>
     ); 
