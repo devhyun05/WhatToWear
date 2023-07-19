@@ -89,10 +89,10 @@ const Main = () => {
                         options={searchResultArray}
                         getOptionLabel={(option) => `${option.toponymName}, ${option.countryCode}`}
                         onInputChange={(event, newValue) => {
-                        setSearchValue(newValue);
+                            setSearchValue(newValue);
                         }}
                         onChange={(event, newValue) => {
-                        setSelectedOption(newValue);
+                            setSelectedOption(newValue);
                         }}
                         renderOption={(props, option) => (
                             <li {...props}>
@@ -133,9 +133,14 @@ const Main = () => {
                         )}
                     />
                     <Collapse in={!!selectedOption}>
-                        <Button onClick={() => navigate('/outfit')} variant="contained" color="primary" style={{marginTop: '20px'}}>
-                            Check today's outfit!
-                        </Button>
+                    <Button onClick={() => {
+                        const city = selectedOption?.toponymName;
+                        navigate('/outfit', { state: { city } });
+                    }} variant="contained" color="primary" style={{marginTop: '20px'}}>
+                        Check today's outfit!
+                    </Button>
+
+
                     </Collapse>
                 </div>
             </div>
