@@ -39,6 +39,7 @@ const Outfit = () => {
               <>
                 <OutfitImage src={process.env.PUBLIC_URL + '/img/t-shirt.png'} alt="T-shirt" />
                 <OutfitImage src={process.env.PUBLIC_URL + '/img/short_pants.png'} alt="Short pants" />
+                <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" />
               </>
             );
         } else {
@@ -49,7 +50,7 @@ const Outfit = () => {
 
     return (
         <div>
-            <Box style={{display: "flex", justifyContent: "flex-start", alignItems: "center", marginTop: '5%', marginLeft: '5%'}}>
+            <Box style={{display: "flex", justifyContent: "flex-start", alignItems: "center", marginTop: '2%', marginLeft: '2%'}}>
                 {weatherData ? (
                     <Card style={{width: '20%', height: '20%'}}>
                         <CardContent>
@@ -84,7 +85,8 @@ const Outfit = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
             >
-                <h1>Recommended Outfit</h1>
+           
+                <p></p>
                 {weatherData && weatherClothesCalculate()}
             </motion.div>
 
