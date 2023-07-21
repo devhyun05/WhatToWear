@@ -25,10 +25,47 @@ const Outfit = () => {
         }
     }, [cityName]);
     
-    const OutfitImage = ({ src, alt }) => (
-        <div style={{backgroundColor: 'white', width: '15%', height: '15%'}}>
-          <img src={src} alt={alt} style={{width: '100%', height: '100%'}} />
-        </div>
+    const OutfitImage = ({ src, alt, description }) => (
+        <Box sx={{
+            backgroundColor: 'white', 
+            width: '15%', 
+            height: '15%', 
+            position: 'relative',
+            '&:hover .overlay': {
+                opacity: 1
+            }
+        }}>
+            <img src={src} alt={alt} style={{width: '100%', height: '100%'}} />
+            <Box 
+                className="overlay" 
+                sx={{
+                    position: 'absolute',
+                    top: '0',
+                    left: '0',
+                    height: '100%',
+                    width: '100%',
+                    opacity: '0',
+                    transition: '.5s ease',
+                    backgroundColor: 'rgba(0,0,0,0.6)'
+                }}
+            >
+                <Typography 
+                    variant="body1" 
+                    textAlign="center"
+                    sx={{
+                        color: 'white',
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        msTransform: 'translate(-50%, -50%)',
+                        textAlign: 'center',
+                    }}
+                >
+                    {description}
+                </Typography>
+            </Box>
+        </Box>
     );
 
     const weatherClothesCalculate = () => {
@@ -37,9 +74,9 @@ const Outfit = () => {
         if (tempCelsius >= 23 && tempCelsius <= 27 ) {
             return (
               <>
-                <OutfitImage src={process.env.PUBLIC_URL + '/img/t-shirt.png'} alt="T-shirt" />
-                <OutfitImage src={process.env.PUBLIC_URL + '/img/short_pants.png'} alt="Short pants" />
-                <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" />
+                  <OutfitImage src={process.env.PUBLIC_URL + '/img/t-shirt.png'} alt="T-shirt" description="T-shirt" />
+                  <OutfitImage src={process.env.PUBLIC_URL + '/img/short_pants.png'} alt="Short pants" description="Short pants" />
+                  <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
               </>
             );
         } else {
