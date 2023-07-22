@@ -46,7 +46,7 @@ const Outfit = () => {
                     width: '100%',
                     opacity: '0',
                     transition: '.5s ease',
-                    backgroundColor: 'rgba(0,0,0,0.6)'
+                    backgroundColor: 'rgba(0,0,0,0.2)'
                 }}
             >
                 <Typography 
@@ -70,22 +70,33 @@ const Outfit = () => {
 
     const weatherClothesCalculate = () => {
         let tempCelsius = Math.round(weatherData.main.temp - 273.15);
-    
+        let outfit;
+
         if (tempCelsius >= 23 && tempCelsius <= 27 ) {
-            return (
+            outfit = (
               <>
                   <OutfitImage src={process.env.PUBLIC_URL + '/img/t-shirt.png'} alt="T-shirt" description="T-shirt" />
                   <OutfitImage src={process.env.PUBLIC_URL + '/img/short_pants.png'} alt="Short pants" description="Short pants" />
                   <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
               </>
             );
+        } else if (tempCelsius >= 20 && tempCelsius <= 22) {
+            outfit = (
+              <>
+                <OutfitImage src={process.env.PUBLIC_URL + '/img/long_shirt.png'} alt="Long shirt" description="Long shirt"/> 
+                <OutfitImage src={process.env.PUBLIC_URL + '/img/long_pants.png'} alt="Long pants" description="Long pants"/> 
+                <OutfitImage src={process.env.PUBLIC_URL + '/img/sneakers.png'} alt="Sneakers" description="Sneakers"/> 
+              </>
+            );
         } else {
-            return <h1>No image</h1>; 
+            outfit = <h1>No image</h1>; 
         }
+
+        return outfit;
     }
     
 
-    return (
+        return (
         <div>
             <Box style={{display: "flex", justifyContent: "flex-start", alignItems: "center", marginTop: '2%', marginLeft: '2%'}}>
                 {weatherData ? (
@@ -122,13 +133,19 @@ const Outfit = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
             >
-           
-                <p></p>
-                {weatherData && weatherClothesCalculate()}
+                {weatherData && (
+                  <>
+                    <Typography variant="h5" component="h2" textAlign="center" style={{marginBottom: '1em'}}>
+                        Recommended Outfit
+                    </Typography>
+                    {weatherClothesCalculate()}
+                  </>
+                )}
             </motion.div>
 
         </div>
     ); 
+
 }
 
 export default Outfit;
