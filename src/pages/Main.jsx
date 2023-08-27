@@ -78,8 +78,12 @@ const Main = () => {
     };
 
     return (
+        <div style={{backgroundImage: 'url("/img/cloud-background.jpg")', width: '100vw', height: '100vh', backgroundSize: 'cover'}}>
         <ThemeProvider theme={theme}>
-            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center'}}>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center'}}>
+                <div>
+                    <h1>Weather Cloth Recommendation</h1>
+                </div>
                 <div className="search-box-wrapper">
                     <h2 style={{textAlign: 'center'}}>Search Your City</h2>
     
@@ -145,6 +149,7 @@ const Main = () => {
                 </div>
             </div>
         </ThemeProvider>
+        </div>
     );
 }
 
