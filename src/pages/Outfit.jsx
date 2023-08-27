@@ -88,6 +88,12 @@ const Outfit = () => {
                 <OutfitImage src={process.env.PUBLIC_URL + '/img/sneakers.png'} alt="Sneakers" description="Sneakers"/> 
               </>
             );
+        } else if (tempCelsius >= 17 && tempCelsius <= 19) {
+            outfit =(
+                <>
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/sweater.PNG'} alt="Sweater" description="Sweater"/> 
+                </>
+            )
         } else {
             outfit = <h1>No image</h1>; 
         }
