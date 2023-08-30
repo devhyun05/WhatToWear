@@ -72,7 +72,15 @@ const Outfit = () => {
         let tempCelsius = Math.round(weatherData.main.temp - 273.15);
         let outfit;
 
-        if (tempCelsius >= 23 && tempCelsius <= 27 ) {
+        if (tempCelsius >= 28) {
+            outfit = (
+                <>
+                  <OutfitImage src={process.env.PUBLIC_URL + '/img/t-shirt.png'} alt="T-shirt" description="T-shirt" />
+                  <OutfitImage src={process.env.PUBLIC_URL + '/img/short_pants.png'} alt="Short pants" description="Short pants" />
+                  <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
+                </>
+            )
+        } else if (tempCelsius >= 23 && tempCelsius <= 27 ) {
             outfit = (
               <>
                   <OutfitImage src={process.env.PUBLIC_URL + '/img/t-shirt.png'} alt="T-shirt" description="T-shirt" />
@@ -85,17 +93,37 @@ const Outfit = () => {
               <>
                 <OutfitImage src={process.env.PUBLIC_URL + '/img/long_shirt.png'} alt="Long shirt" description="Long shirt"/> 
                 <OutfitImage src={process.env.PUBLIC_URL + '/img/long_pants.png'} alt="Long pants" description="Long pants"/> 
-                <OutfitImage src={process.env.PUBLIC_URL + '/img/sneakers.png'} alt="Sneakers" description="Sneakers"/> 
+                <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
               </>
             );
         } else if (tempCelsius >= 17 && tempCelsius <= 19) {
             outfit =(
                 <>
                     <OutfitImage src={process.env.PUBLIC_URL + '/img/sweater.PNG'} alt="Sweater" description="Sweater"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/long_pants.png'} alt="Long pants" description="Long pants"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
                 </>
             )
+        } else if (tempCelsius >= 12 && tempCelsius <= 16) {
+            outfit = (
+                <>
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jacket.jpg'} alt="Jacket" description="Jacket"/>
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/long_pants.png'} alt="Long pants" description="Long pants"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/work_boots.jpg'} alt="Work Boots" description="Work Boots" />
+                </>
+            )   
+        } else if (tempCelsius >= 9 && tempCelsius <= 11) {
+            outfit = (
+                <>
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/coat.jpg'} alt="Coat" description="Trench Coat"/>
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/long_pants.png'} alt="Long pants" description="Long pants"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/work_boots.jpg'} alt="Work Boots" description="Work Boots" />
+                </>
+            )
+        } else if (tempCelsius >= 5 && tempCelsius <= 8) {
+            
         } else {
-            outfit = <h1>No image</h1>; 
+
         }
 
         return outfit;
@@ -104,7 +132,7 @@ const Outfit = () => {
 
         return (
         <div>
-            <Box style={{display: "flex", justifyContent: "flex-start", alignItems: "center", marginTop: '2%', marginLeft: '2%'}}>
+            <Box style={{ marginTop: '2%', marginLeft: '2%'}}>
                 {weatherData ? (
                     <Card style={{width: '20%', height: '20%'}}>
                         <CardContent>
