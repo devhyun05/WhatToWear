@@ -92,6 +92,8 @@ const Outfit = () => {
             outfit =(
                 <>
                     <OutfitImage src={process.env.PUBLIC_URL + '/img/sweater.PNG'} alt="Sweater" description="Sweater"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jeans.png'} alt="Jeans" description="Jeans" /> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
                 </>
             )
         } else {
