@@ -11,7 +11,7 @@ const Outfit = () => {
     const location = useLocation(); 
     const cityName = location.state?.city; 
     const [weatherData, setWeatherData] = useState(null); 
-
+    const [weatherDesc, setWeatherDesc] = useState(""); 
     useEffect(() => {
         if (cityName) {
             fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=1ea1024f7bfa9bdeb4698e2cbefa3060`)
@@ -100,8 +100,18 @@ const Outfit = () => {
             outfit =(
                 <>
                     <OutfitImage src={process.env.PUBLIC_URL + '/img/sweater.PNG'} alt="Sweater" description="Sweater"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/long_pants.png'} alt="Long pants" description="Long pants"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
                 </>
             )
+        } else if (tempCelsius >= 12 && tempCelsius <= 16) {
+            outfit = (
+                <>
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jacket.png'} alt="Jacket" description="Jacket"/> 
+                </>
+            )
+        } else if (tempCelsius >= 9 && tempCelsius <= 11) {
+            
         } else if (tempCelsius >= 5 && tempCelsius <= 8) {
             
         } else {
@@ -128,6 +138,7 @@ const Outfit = () => {
                                 />
                                 <Typography variant="body2" textAlign="center">
                                     {`${weatherData.weather[0].description}`}
+                                    
                                 </Typography>
                             </Box>
                             <Typography variant="body2" textAlign="center">
