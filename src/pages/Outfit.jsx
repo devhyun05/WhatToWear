@@ -27,7 +27,6 @@ const Outfit = () => {
     
     const OutfitImage = ({ src, alt, description }) => (
         <Box sx={{
-            backgroundColor: 'white', 
             width: '15%', 
             height: '15%', 
             position: 'relative',
@@ -35,7 +34,9 @@ const Outfit = () => {
                 opacity: 1
             }
         }}>
-            <img src={src} alt={alt} style={{width: '100%', height: '100%'}} />
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                 <img src={src} alt={alt} style={{width: '70%', height: '70%'}} />
+            </div>
             <Box 
                 className="overlay" 
                 sx={{
@@ -107,15 +108,27 @@ const Outfit = () => {
         } else if (tempCelsius >= 12 && tempCelsius <= 16) {
             outfit = (
                 <>
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jacket.png'} alt="Jacket" description="Jacket"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jacket.png'}alt="Jacket" description="Jacket"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jeanss.png'} alt="Long pants" description="Long pants"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
                 </>
             )
         } else if (tempCelsius >= 9 && tempCelsius <= 11) {
-            
+            outfit = (
+                <>
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/coat.jpg'} alt="Trench Coat" description="Trench Coat" /> 
+                </>
+            )
         } else if (tempCelsius >= 5 && tempCelsius <= 8) {
-            
+            outfit = (
+                <>
+                </>
+            )
         } else {
-
+            outfit = (
+                <>
+                </>
+            )
         }
 
         return outfit;
@@ -124,31 +137,36 @@ const Outfit = () => {
 
         return (
         <div>
-            <Box style={{ marginTop: '2%', marginLeft: '2%'}}>
+            <video src={"/video/broken_cloud.mp4"} autoPlay loop muted
+                                                   style={{position: 'absolute', 
+                                                           objectFit: 'cover', 
+                                                           width: '100vw', 
+                                                           height: '100vh',
+                                                           zIndex: '-1'}}>
+            </video>
+
+            <Box style={{display: 'flex', justifyContent: 'flex-end', marginRight: '20%'}}>
                 {weatherData ? (
-                    <Card style={{width: '20%', height: '20%'}}>
-                        <CardContent>
-                            <Typography variant="h5" component="div" textAlign="center">
+              
+                        <div>
                                 {`${weatherData.name}, ${weatherData.sys.country}`}
-                            </Typography>
-                            <Box display="flex" flexDirection="column" alignItems="center">
+                 
                                 <img 
                                     src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
                                     alt="Weather icon"
                                 />
-                                <Typography variant="body2" textAlign="center">
-                                    {`${weatherData.weather[0].description}`}
+          
+                                {`${weatherData.weather[0].description}`}
                                     
-                                </Typography>
-                            </Box>
-                            <Typography variant="body2" textAlign="center">
+    
+                      
                                 {`Temperature: ${Math.round(weatherData.main.temp - 273.15)}°C`}
-                            </Typography>
-                            <Typography variant="body2" textAlign="center">
+              
+           
                                 {`Humidity: ${weatherData.main.humidity}%`}
-                            </Typography>
-                        </CardContent>
-                    </Card>
+  
+                        </div>
+
                 ) : (
                     <p>Loading...</p>
                 )}
@@ -162,14 +180,13 @@ const Outfit = () => {
             >
                 {weatherData && (
                   <>
-                    <Typography variant="h5" component="h2" textAlign="center" style={{marginBottom: '1em'}}>
-                        Recommended Outfit
+                    <Typography variant="h5" component="h2" textAlign="center" >
+                        {/* Recommended Outfit */}
                     </Typography>
                     {weatherClothesCalculate()}
                   </>
                 )}
             </motion.div>
-
         </div>
     ); 
 
