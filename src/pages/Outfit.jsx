@@ -3,8 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+
 
 
 const Outfit = () => {
@@ -100,9 +99,9 @@ const Outfit = () => {
         } else if (tempCelsius >= 17 && tempCelsius <= 19) {
             outfit =(
                 <>
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/sweater.PNG'} alt="Sweater" description="Sweater"/> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/long_pants.png'} alt="Long pants" description="Long pants"/> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/trench-coat.png'} alt="Sweater" description="Sweater"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/fleece-lined-pants.png'} alt="Long pants" description="Long pants"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/ankle-boots.png'} alt="Canvas shoes" description="Canvas shoes" />
                 </>
             )
         } else if (tempCelsius >= 12 && tempCelsius <= 16) {
@@ -157,14 +156,9 @@ const Outfit = () => {
                                 />
           
                                 {`${weatherData.weather[0].description}`}
-                                    
-    
-                      
+                        
                                 {`Temperature: ${Math.round(weatherData.main.temp - 273.15)}°C`}
-              
-           
                                 {`Humidity: ${weatherData.main.humidity}%`}
-  
                         </div>
 
                 ) : (
