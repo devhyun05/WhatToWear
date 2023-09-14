@@ -16,7 +16,7 @@ app.get('/geonames', async (req, res) => {
 
     try {
         const { q } = req.query;
-        const geonamesURL = `http://api.geonames.org/searchJSON?q=${q}&maxRows=100&username=devhyun05&cities=cities15000`;
+        const geonamesURL = `https://api.geonames.org/searchJSON?q=${q}&maxRows=100&username=devhyun05&cities=cities15000`;
         const geonamesResponse = await fetch(geonamesURL); 
         const geonamesData = await geonamesResponse.json();
         res.json(geonamesData); 
