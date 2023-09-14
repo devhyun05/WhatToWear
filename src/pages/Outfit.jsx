@@ -99,7 +99,7 @@ const Outfit = () => {
         } else if (tempCelsius >= 17 && tempCelsius <= 19) {
             outfit =(
                 <>
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/trench-coat.png'} alt="Sweater" description="Sweater"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/long-T-shirt.png'} alt="Sweater" description="Sweater"/> 
                     <OutfitImage src={process.env.PUBLIC_URL + '/img/fleece-lined-pants.png'} alt="Long pants" description="Long pants"/> 
                     <OutfitImage src={process.env.PUBLIC_URL + '/img/ankle-boots.png'} alt="Canvas shoes" description="Canvas shoes" />
                 </>
@@ -107,9 +107,9 @@ const Outfit = () => {
         } else if (tempCelsius >= 12 && tempCelsius <= 16) {
             outfit = (
                 <>
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jacket.png'}alt="Jacket" description="Jacket"/> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jeanss.png'} alt="Long pants" description="Long pants"/> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jacket.png'} alt="Sweater" description="Sweater"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/fleece-lined-pants.png'} alt="Long pants" description="Long pants"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/sneakers.png'} alt="Canvas shoes" description="Canvas shoes" />
                 </>
             )
         } else if (tempCelsius >= 9 && tempCelsius <= 11) {
