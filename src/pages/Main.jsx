@@ -56,9 +56,9 @@ const Main = () => {
     const inputKey = useRef(1);
 
     useEffect(() => {
-    
+        console.log("Run");
         if (debouncedSearchValue) {
-            console.log("Run")
+   
             fetch(`${backend}/geonames?q=${debouncedSearchValue}`)
             .then(response => response.json())
             .then(responseData => {
