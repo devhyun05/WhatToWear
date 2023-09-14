@@ -10,7 +10,7 @@ const Outfit = () => {
     const location = useLocation(); 
     const cityName = location.state?.city; 
     const [weatherData, setWeatherData] = useState(null); 
-    const [weatherDesc, setWeatherDesc] = useState(""); 
+
     useEffect(() => {
         if (cityName) {
             fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=1ea1024f7bfa9bdeb4698e2cbefa3060`)
@@ -72,6 +72,7 @@ const Outfit = () => {
         let tempCelsius = Math.round(weatherData.main.temp - 273.15);
         let outfit;
 
+        if (weatherData != null) {
         if (tempCelsius >= 28) {
             outfit = (
                 <>
@@ -137,24 +138,137 @@ const Outfit = () => {
                 </>
             )
         }
+    }
 
         return outfit;
     }
-    
+        const backgroundVideo = () => {
+            let bgVideo; 
+            console.log(weatherData);
+            if (weatherData != null) {
+            if (weatherData.weather[0].description === "clear sky") {
+                console.log(`Weather Data : ${weatherData.weather[0].description}`);
+                    bgVideo = (
+                        <>
+                            <video src={"/video/clear-sky.mp4"} autoPlay loop muted
+                                                    style={{position: 'absolute', 
+                                                            objectFit: 'cover', 
+                                                            width: '100vw', 
+                                                            height: '100vh',
+                                                            zIndex: '-1'}}>
+                            </video>
+                        </>
+                    )
+                } else if (weatherData.weather[0].description === "few clouds" || weatherData.weather[0].description === "broken clouds") {
+                    bgVideo = (
+                        <>
+                            <video src={"/video/few-clouds.mp4"} autoPlay loop muted
+                                                    style={{position: 'absolute', 
+                                                            objectFit: 'cover', 
+                                                            width: '100vw', 
+                                                            height: '100vh',
+                                                            zIndex: '-1'}}>
+                            </video>                    
+                        </>
+                    )
+                } else if (weatherData.weather[0].description === "scattered clouds" || weatherData.weather[0].description === "overcast clouds") {
+                    bgVideo = (
+                        <>
+                            <video src={"/video/scattered-clouds.mp4"} autoPlay loop muted
+                                                    style={{position: 'absolute', 
+                                                            objectFit: 'cover', 
+                                                            width: '100vw', 
+                                                            height: '100vh',
+                                                            zIndex: '-1'}}>
+                            </video>                      
+                        </>
+                    )
+                } else if (weatherData.weather[0].description === "broken clouds") {
+                    bgVideo = (
+                        <>
+                            <video src={"/video/broken-cluds.mp4"} autoPlay loop muted
+                                                    style={{position: 'absolute', 
+                                                            objectFit: 'cover', 
+                                                            width: '100vw', 
+                                                            height: '100vh',
+                                                            zIndex: '-1'}}>
+                            </video>                        
+                        </>
+                    )
+                } else if (weatherData.weather[0].id === 500 || weatherData.weather[0].id === 501) {
+                    bgVideo = (
+                        <>
+                            <video src={"/video/shower-rain.mp4"} autoPlay loop muted
+                                                    style={{position: 'absolute', 
+                                                            objectFit: 'cover', 
+                                                            width: '100vw', 
+                                                            height: '100vh',
+                                                            zIndex: '-1'}}>
+                            </video>                        
+                        </>
+                    )
+                } else if (weatherData.weather[0].main === "Rain") {
+                    bgVideo = (
+                        <>
+                            <video src={"/video/rain.mp4"} autoPlay loop muted
+                                                    style={{position: 'absolute', 
+                                                            objectFit: 'cover', 
+                                                            width: '100vw', 
+                                                            height: '100vh',
+                                                            zIndex: '-1'}}>
+                            </video>                        
+                        </>
+                    )
+                } else if (weatherData.weather[0].main === "Thunderstorm") {
+                    bgVideo = (
+                        <>
+                            <video src={"/video/thunderstorm.mp4"} autoPlay loop muted
+                                                    style={{position: 'absolute', 
+                                                            objectFit: 'cover', 
+                                                            width: '100vw', 
+                                                            height: '100vh',
+                                                            zIndex: '-1'}}>
+                            </video>                        
+                        </>
+                    )
+                } else if (weatherData.weather[0].main === "Snow") {
+                    bgVideo = (
+                        <>
+                            <video src={"/video/snow.mp4"} autoPlay loop muted
+                                                    style={{position: 'absolute', 
+                                                            objectFit: 'cover', 
+                                                            width: '100vw', 
+                                                            height: '100vh',
+                                                            zIndex: '-1'}}>
+                            </video>                        
+                        </>
+                    )
+                } else if (weatherData.weather[0].main === "Mist") {
+                    bgVideo = (
+                        <>
+                            <video src={"/video/mist.mp4"} autoPlay loop muted
+                                                    style={{position: 'absolute', 
+                                                            objectFit: 'cover', 
+                                                            width: '100vw', 
+                                                            height: '100vh',
+                                                            zIndex: '-1'}}>
+                            </video>                        
+                        </>
+                    )
+                }
+            } else {
+                console.log(`Weather Data : ${weatherData}`);
+            }
+            return bgVideo;
+        }
 
         return (
         <div>
-            <video src={"/video/clear-sky.mp4"} autoPlay loop muted
-                                                   style={{position: 'absolute', 
-                                                           objectFit: 'cover', 
-                                                           width: '100vw', 
-                                                           height: '100vh',
-                                                           zIndex: '-1'}}>
-            </video>
-
+ 
    
                 {weatherData ? (
-              
+                    <>
+                       {backgroundVideo()}
                         <div style={{display: 'flex', flexDirection: 'column', color: 'white', marginLeft: '15%' }}>
                                 <h1>
                                     {`${weatherData.name}, ${weatherData.sys.country}`}
@@ -170,9 +284,10 @@ const Outfit = () => {
                                 <h1>{`Temperature: ${Math.round(weatherData.main.temp - 273.15)}°C`}</h1>
                                 <h1>{`Humidity: ${weatherData.main.humidity}%`}</h1>
                         </div>
-
+                    </>
                 ) : (
-                    <p>Loading...</p>
+                    
+                <p>Loading weather data...</p>
                 )}
 
 
