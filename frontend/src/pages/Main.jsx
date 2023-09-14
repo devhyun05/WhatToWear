@@ -10,7 +10,7 @@ import Collapse from '@mui/material/Collapse';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import '../App.css'; 
 
-const backend = 'https://weatherclothesrecommendation-f8e0423120e4.herokuapp.com/'; 
+const backend = 'http://localhost:8000'; 
 
 const theme = createTheme({
     components: {
@@ -56,8 +56,10 @@ const Main = () => {
     const inputKey = useRef(1);
 
     useEffect(() => {
+    
         if (debouncedSearchValue) {
-            fetch(`${backend}geonames?q=${debouncedSearchValue}`)
+            console.log("Run")
+            fetch(`${backend}/geonames?q=${debouncedSearchValue}`)
             .then(response => response.json())
             .then(responseData => {
                 let results = responseData.geonames
