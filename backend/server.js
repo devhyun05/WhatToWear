@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8000;
 const corsOptions = {
     origin: [
         'https://weatherclothesrecommendation-f8e0423120e4.herokuapp.com',
-        "http://localhost:3000"
+        "https://localhost:3000"
     ],
 };
 // Use CORS middleware
