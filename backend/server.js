@@ -5,18 +5,18 @@ const PORT = process.env.PORT || 8000;
 
 const corsOptions = {
     origin: [
-        'https://weatherclothesrecommendation-f8e0423120e4.herokuapp.com',
-        "https://localhost:3000"
+        'https://weatherclothesrecommendation-f8e0423120e4.herokuapp.com/',
+        "http://localhost:3000"
     ],
 };
 // Use CORS middleware
 app.use(cors(corsOptions)); 
 
 app.get('/geonames', async (req, res) => {
-
+    console.log("backend");
     try {
         const { q } = req.query;
-        const geonamesURL = `https://api.geonames.org/searchJSON?q=${q}&maxRows=100&username=devhyun05&cities=cities15000`;
+        const geonamesURL = `http://api.geonames.org/searchJSON?q=${q}&maxRows=100&username=devhyun05&cities=cities15000`;
         const geonamesResponse = await fetch(geonamesURL); 
         const geonamesData = await geonamesResponse.json();
         res.json(geonamesData); 
