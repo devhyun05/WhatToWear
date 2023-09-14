@@ -77,63 +77,63 @@ const Outfit = () => {
                 <>
                   <OutfitImage src={process.env.PUBLIC_URL + '/img/t-shirt.png'} alt="T-shirt" description="T-shirt" />
                   <OutfitImage src={process.env.PUBLIC_URL + '/img/short-pants.png'} alt="Short pants" description="Short pants" />
-                  <OutfitImage src={process.env.PUBLIC_URL + '/img/sandle.png'} alt="Canvas shoes" description="Canvas shoes" />
+                  <OutfitImage src={process.env.PUBLIC_URL + '/img/sandle.png'} alt="Sandle" description="Sandle" />
                 </>
             )
         } else if (tempCelsius >= 23 && tempCelsius <= 27 ) {
             outfit = (
               <>
-                  <OutfitImage src={process.env.PUBLIC_URL + '/img/short-dress-shirt.png'} alt="T-shirt" description="T-shirt" />
+                  <OutfitImage src={process.env.PUBLIC_URL + '/img/short-dress-shirt.png'} alt="Short dress shirt" description="Short dress shirt" />
                   <OutfitImage src={process.env.PUBLIC_URL + '/img/short-pants.png'} alt="Short pants" description="Short pants" />
-                  <OutfitImage src={process.env.PUBLIC_URL + '/img/sneakers.png'} alt="Canvas shoes" description="Canvas shoes" />
+                  <OutfitImage src={process.env.PUBLIC_URL + '/img/sneakers.png'} alt="Sneakers" description="Sneakers" />
               </>
             );
         } else if (tempCelsius >= 20 && tempCelsius <= 22) {
             outfit = (
               <>
-                <OutfitImage src={process.env.PUBLIC_URL + '/img/blouse.png'} alt="Long shirt" description="Long shirt"/> 
-                <OutfitImage src={process.env.PUBLIC_URL + '/img/trouser.png'} alt="Long pants" description="Long pants"/> 
-                <OutfitImage src={process.env.PUBLIC_URL + '/img/canvas_shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
+                <OutfitImage src={process.env.PUBLIC_URL + '/img/blouse.png'} alt="Blouse" description="Blouse"/> 
+                <OutfitImage src={process.env.PUBLIC_URL + '/img/trouser.png'} alt="Trouser" description="Trouser"/> 
+                <OutfitImage src={process.env.PUBLIC_URL + '/img/sneakers.png'} alt="Sneakeres" description="Sneakers" />
               </>
             );
         } else if (tempCelsius >= 17 && tempCelsius <= 19) {
             outfit =(
                 <>
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/long-T-shirt.png'} alt="Sweater" description="Sweater"/> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/trouser.png'} alt="Long pants" description="Long pants"/> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/running-shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/long-T-shirt.png'} alt="Long T-shirt" description="Long T-shirt"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/trouser.png'} alt="Trouser" description="Trouser"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/running-shoes.png'} alt="Running shoes" description="Running shoes" />
                 </>
             )
         } else if (tempCelsius >= 12 && tempCelsius <= 16) {
             outfit = (
                 <>
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jacket.png'} alt="Sweater" description="Sweater"/> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jeans.png'} alt="Long pants" description="Long pants"/> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/running-shoes.png'} alt="Canvas shoes" description="Canvas shoes" />
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jacket.png'} alt="Jacket" description="Jacket"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jeans.png'} alt="Jeans" description="Jeans"/> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/running-shoes.png'} alt="Running shoes" description="Running shoes" />
                 </>
             )
         } else if (tempCelsius >= 9 && tempCelsius <= 11) {
             outfit = (
                 <>
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jacket.png'} alt="Trench Coat" description="Trench Coat" /> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/fleece-lined-pants.png'} alt="Trench Coat" description="Trench Coat" /> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/ankle-boots.png'} alt="Trench Coat" description="Trench Coat" /> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/jacket.png'} alt="Jacket" description="Jacket" /> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/fleece-lined-pants.png'} alt="Fleece-lined pants" description="Fleece-lined pants" /> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/ankle-boots.png'} alt="Ankle boots" description="Ankle boots" /> 
                 </>
             )
         } else if (tempCelsius >= 5 && tempCelsius <= 8) {
             outfit = (
                 <>
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/padded-jacket.png'} alt="Trench Coat" description="Trench Coat" /> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/fleece-lined-pants.png'} alt="Trench Coat" description="Trench Coat" /> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/ankle-boots.png'} alt="Trench Coat" description="Trench Coat" /> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/padded-jacket.png'} alt="Padded jacket" description="Padded jacket" /> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/fleece-lined-pants.png'} alt="Fleece-lined pants" description="Fleece-lined pants" /> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/ankle-boots.png'} alt="Ankle boots" description="Ankle boots" /> 
                 </>
             )
         } else {
             outfit = (
                 <>
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/padded-jacket.png'} alt="Trench Coat" description="Trench Coat" /> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/fleece-lined-pants.png'} alt="Trench Coat" description="Trench Coat" /> 
-                    <OutfitImage src={process.env.PUBLIC_URL + '/img/ankle-boots.png'} alt="Trench Coat" description="Trench Coat" /> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/padded-jacket.png'} alt="Padded jacket" description="Padded jacket" /> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/fleece-lined-pants.png'} alt="Fleece-lined pants" description="Fleece-lined pants" /> 
+                    <OutfitImage src={process.env.PUBLIC_URL + '/img/ankle-boots.png'} alt="Ankle boots" description="Ankle boots" /> 
                 </>
             )
         }
@@ -144,7 +144,7 @@ const Outfit = () => {
 
         return (
         <div>
-            <video src={"/video/broken_cloud.mp4"} autoPlay loop muted
+            <video src={"/video/clear-sky.mp4"} autoPlay loop muted
                                                    style={{position: 'absolute', 
                                                            objectFit: 'cover', 
                                                            width: '100vw', 
@@ -152,27 +152,29 @@ const Outfit = () => {
                                                            zIndex: '-1'}}>
             </video>
 
-            <Box style={{display: 'flex', justifyContent: 'flex-end', marginRight: '20%'}}>
+   
                 {weatherData ? (
               
-                        <div>
-                                {`${weatherData.name}, ${weatherData.sys.country}`}
-                 
-                                <img 
-                                    src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
-                                    alt="Weather icon"
-                                />
-          
-                                {`${weatherData.weather[0].description}`}
-                        
-                                {`Temperature: ${Math.round(weatherData.main.temp - 273.15)}°C`}
-                                {`Humidity: ${weatherData.main.humidity}%`}
+                        <div style={{display: 'flex', flexDirection: 'column', color: 'white', marginLeft: '15%' }}>
+                                <h1>
+                                    {`${weatherData.name}, ${weatherData.sys.country}`}
+                                </h1>
+                                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                    <img 
+                                        src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+                                        alt="Weather icon"
+                                    />
+                                    <h1>{`${weatherData.weather[0].description}`}</h1>
+                                </div>
+
+                                <h1>{`Temperature: ${Math.round(weatherData.main.temp - 273.15)}°C`}</h1>
+                                <h1>{`Humidity: ${weatherData.main.humidity}%`}</h1>
                         </div>
 
                 ) : (
                     <p>Loading...</p>
                 )}
-            </Box>
+
 
             <motion.div 
                 style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
