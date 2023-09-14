@@ -10,7 +10,7 @@ import Collapse from '@mui/material/Collapse';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import '../App.css'; 
 
-const backend = 'https://weatherclothesrecommendation-f8e0423120e4.herokuapp.com'; 
+const backend = 'http://weatherclothesrecommendation-f8e0423120e4.herokuapp.com'; 
 
 const theme = createTheme({
     components: {
