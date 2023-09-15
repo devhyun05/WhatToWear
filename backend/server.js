@@ -2,6 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 8000; 
+const dotenv = require('dotenv');
+
+dotenv.config(); 
+
+
 
 const corsOptions = {
     origin: [
@@ -12,14 +17,22 @@ const corsOptions = {
 // Use CORS middleware
 app.use(cors(corsOptions)); 
 
-app.get('/geonames', async (req, res) => {
+app.get('/cityname', async (req, res) => {
+    
     console.log("backend");
     try {
-        const { q } = req.query;
-        const geonamesURL = `http://api.geonames.org/searchJSON?q=${q}&maxRows=100&username=devhyun05&cities=cities15000`;
-        const geonamesResponse = await fetch(geonamesURL); 
-        const geonamesData = await geonamesResponse.json();
-        res.json(geonamesData); 
+        console.log(req.query);
+        const { name } = req.query;
+        const cityNameURL = `https://api.api-ninjas.com/v1/city?name=${name}`;
+        const cityNameResponse = await fetch(cityNameURL, {
+            method: 'GET',
+            headers: { 'X-Api-Key': `${process.env.apikey}`},
+            url: 'https://api.api-ninjas.com/v1/city?name=' + name,        
+            contentType: 'application/json',
+        }); 
+        const cityNameData = await cityNameResponse.json();
+
+        res.json(cityNameData); 
     } catch (error) {
         console.error('Error: ', error);
         res.status(500).json({ error: 'An error occurred '}); 
