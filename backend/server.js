@@ -6,8 +6,7 @@ const dotenv = require('dotenv');
 
 dotenv.config(); 
 
-
-
+const apiKey = process.env.apikey; 
 const corsOptions = {
     origin: [
         'https://weatherclothesrecommendation-f8e0423120e4.herokuapp.com/',
@@ -26,7 +25,7 @@ app.get('/cityname', async (req, res) => {
         const cityNameURL = `https://api.api-ninjas.com/v1/city?name=${name}`;
         const cityNameResponse = await fetch(cityNameURL, {
             method: 'GET',
-            headers: { 'X-Api-Key': `${process.env.apikey}`},
+            headers: { 'X-Api-Key': `${apiKey}`},
             url: 'https://api.api-ninjas.com/v1/city?name=' + name,        
             contentType: 'application/json',
         }); 
