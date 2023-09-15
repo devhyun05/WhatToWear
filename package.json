@@ -24,7 +24,6 @@
     "build": "node --max_old_space_size=2560 node_modules/.bin/react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-prebuild": "cd backend && npm install"
   },
   "eslintConfig": {
     "extends": [
