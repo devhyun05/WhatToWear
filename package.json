@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "node --max_old_space_size=2560 node_modules/.bin/react-scripts start",
-    "start-server": "cd backend && node server.js && cd ..",
+    "start-server": "cd backend && npm install && node server.js && cd .. && npm start",
     "build": "node --max_old_space_size=2560 node_modules/.bin/react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
