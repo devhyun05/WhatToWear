@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'; 
 import { useNavigate } from 'react-router-dom'; 
+
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -56,18 +57,16 @@ const Main = () => {
     const inputKey = useRef(1);
 
     useEffect(() => {
-        console.log("Run");
+  
         if (debouncedSearchValue) {
-   
-            fetch(`${backend}/geonames?q=${debouncedSearchValue}`)
+            fetch(`${backend}/cityname?name=${debouncedSearchValue}`)
             .then(response => response.json())
             .then(responseData => {
-                let results = responseData.geonames
-                              .filter(item => item.toponymName.toLowerCase().startsWith(debouncedSearchValue.toLowerCase()))
-                              .sort((a, b) => a.toponymName.localeCompare(b.toponymName));
-                setSearchResultArray(results); 
+                console.log(responseData);
+                setSearchResultArray(responseData); 
             })
             .catch(error => {
+                console.log("Went to error");
                 console.log("Error: " + error); 
             })
         } else {
@@ -93,7 +92,7 @@ const Main = () => {
                         key={inputKey.current}
                         freeSolo
                         options={searchResultArray}
-                        getOptionLabel={(option) => `${option.toponymName}, ${option.countryCode}`}
+                        getOptionLabel={(option) => `${option.name}, ${option.country}`}
                         onInputChange={(event, newValue) => {
                             setSearchValue(newValue);
                         }}
@@ -103,11 +102,11 @@ const Main = () => {
                         renderOption={(props, option) => (
                             <li {...props}>
                                 <img 
-                                    src={`https://github.com/hjnilsson/country-flags/blob/main/png250px/${option.countryCode.toLowerCase()}.png?raw=true`} 
-                                    alt={`Flag of ${option.countryCode}`} 
+                                    src={`https://github.com/hjnilsson/country-flags/blob/main/png250px/${option.country.toLowerCase()}.png?raw=true`} 
+                                    alt={`Flag of ${option.country}`} 
                                     style={{width: '25px', marginRight: '10px'}}
                                 />
-                                {`${option.toponymName}, ${option.countryCode}`}
+                                {`${option.name}, ${option.country}`}
                             </li>
                         )}
                         renderInput={(params) => (
@@ -140,7 +139,7 @@ const Main = () => {
                     />
                     <Collapse in={!!selectedOption}>
                     <Button onClick={() => {
-                        const city = selectedOption?.toponymName;
+                        const city = selectedOption?.name;
                         navigate('/outfit', { state: { city } });
                     }} variant="contained" color="primary" style={{marginTop: '20px'}}>
                         Check today's outfit!
