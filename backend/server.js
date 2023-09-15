@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 8000; 
 const dotenv = require('dotenv');
+const fetch = require('node-fetch');
 
 dotenv.config(); 
 
@@ -26,8 +27,6 @@ app.get('/cityname', async (req, res) => {
         const cityNameResponse = await fetch(cityNameURL, {
             method: 'GET',
             headers: { 'X-Api-Key': `${apiKey}`},
-            url: 'https://api.api-ninjas.com/v1/city?name=' + name,        
-            contentType: 'application/json',
         }); 
         const cityNameData = await cityNameResponse.json();
 
