@@ -19,8 +19,10 @@ const corsOptions = {
 // Use CORS middleware
 app.use(cors(corsOptions)); 
 
+app.get("/", (req, res) => {
+
+});
 app.get('/cityname', async (req, res) => {
-    
     console.log("backend");
     try {
         console.log(req.query);
