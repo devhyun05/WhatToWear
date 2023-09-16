@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const express = require('express');
+const path = require('path'); 
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 8000; 
@@ -16,8 +17,11 @@ const corsOptions = {
         "http://localhost:3000"
     ],
 };
+
 // Use CORS middleware
 app.use(cors(corsOptions)); 
+
+app.use(express.static(path.join(__dirname + "public"))); 
 
 app.get("/", (req, res) => {
     console.log("default route");
