@@ -21,12 +21,9 @@ const corsOptions = {
 // Use CORS middleware
 app.use(cors(corsOptions)); 
 
-app.use(express.static(path.join(__dirname + "public"))); 
+app.use(express.static(path.join(__dirname + "/public"))); 
 
-app.get("/", (req, res) => {
-    console.log("default route");
-    res.send("abc");
-});
+
 app.get('/cityname', async (req, res) => {
     console.log("backend");
     try {
@@ -34,6 +31,7 @@ app.get('/cityname', async (req, res) => {
         const { name } = req.query;
         const cityNameURL = `https://api.api-ninjas.com/v1/city?name=${name}`;
         const cityNameResponse = await fetch(cityNameURL, {
+            mode: 'no-cors',
             method: 'GET',
             headers: { 'X-Api-Key': `${apiKey}`},
         }); 
