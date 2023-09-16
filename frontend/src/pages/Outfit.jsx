@@ -13,7 +13,7 @@ const Outfit = () => {
 
     useEffect(() => {
         if (cityName) {
-            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=1ea1024f7bfa9bdeb4698e2cbefa3060`)
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=1ea1024f7bfa9bdeb4698e2cbefa3060`)
             .then(response => response.json())
             .then(data => {
                 setWeatherData(data);
@@ -275,7 +275,7 @@ const Outfit = () => {
                                 </h1>
                                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                                     <img 
-                                        src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+                                        src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
                                         alt="Weather icon"
                                     />
                                     <h1>{`${weatherData.weather[0].description}`}</h1>

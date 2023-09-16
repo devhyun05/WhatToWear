@@ -11,7 +11,7 @@ import Collapse from '@mui/material/Collapse';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import '../App.css'; 
 
-const backend = 'https://weatherclothesrecommendation-f8e0423120e4.herokuapp.com'; 
+const backend = 'https://weatherclothesrecommendation-67b3a3b0816e.herokuapp.com'; 
 
 const theme = createTheme({
     components: {
@@ -59,10 +59,9 @@ const Main = () => {
     useEffect(() => {
   
         if (debouncedSearchValue) {
-            fetch(`s${backend}/cityname?name=${debouncedSearchValue}`)
+            fetch(`${backend}/cityname?name=${debouncedSearchValue}`)
             .then(response => response.json())
             .then(responseData => {
-                console.log(responseData);
                 setSearchResultArray(responseData); 
             })
             .catch(error => {

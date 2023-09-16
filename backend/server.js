@@ -10,10 +10,9 @@ const dotenv = require('dotenv');
 
 dotenv.config(); 
 
-const apiKey = process.env.apikey; 
 const corsOptions = {
     origin: [
-        'https://weatherclothesrecommendation-f8e0423120e4.herokuapp.com/',
+        'https://weatherclothesrecommendation-67b3a3b0816e.herokuapp.com',
         "http://localhost:3000"
     ],
 };
@@ -29,10 +28,10 @@ app.get('/cityname', async (req, res) => {
     try {
         console.log(req.query);
         const { name } = req.query;
-        const cityNameURL = `https://heroku-cors-for-weatherapp-9e02669ef7ca.herokuapp.com/https://api.api-ninjas.com/v1/city?name=${name}`;
+        const cityNameURL = `https://api.api-ninjas.com/v1/city?name=${name}`;
         const cityNameResponse = await fetch(cityNameURL, {
             method: 'GET',
-            headers: { 'X-Api-Key': `${apiKey}`},
+            headers: { 'X-Api-Key': `${process.env.apikey}`},
         }); 
         const cityNameData = await cityNameResponse.json();
 
