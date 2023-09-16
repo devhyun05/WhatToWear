@@ -21,6 +21,7 @@ app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
     console.log("default route");
+    res.send("abc");
 });
 app.get('/cityname', async (req, res) => {
     console.log("backend");
