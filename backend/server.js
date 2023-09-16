@@ -20,7 +20,7 @@ const corsOptions = {
 app.use(cors(corsOptions)); 
 
 app.get("/", (req, res) => {
-
+    console.log("default route");
 });
 app.get('/cityname', async (req, res) => {
     console.log("backend");
