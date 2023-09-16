@@ -29,7 +29,7 @@ app.get('/cityname', async (req, res) => {
     try {
         console.log(req.query);
         const { name } = req.query;
-        const cityNameURL = `https://cors-anywhere.herokuapp.com/https://api.api-ninjas.com/v1/city?name=${name}`;
+        const cityNameURL = `https://heroku-cors-for-weatherapp-9e02669ef7ca.herokuapp.com/https://api.api-ninjas.com/v1/city?name=${name}`;
         const cityNameResponse = await fetch(cityNameURL, {
             method: 'GET',
             headers: { 'X-Api-Key': `${apiKey}`},

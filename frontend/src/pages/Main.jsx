@@ -59,7 +59,7 @@ const Main = () => {
     useEffect(() => {
   
         if (debouncedSearchValue) {
-            fetch(`${backend}/cityname?name=${debouncedSearchValue}`)
+            fetch(`s${backend}/cityname?name=${debouncedSearchValue}`)
             .then(response => response.json())
             .then(responseData => {
                 console.log(responseData);
