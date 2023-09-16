@@ -29,9 +29,8 @@ app.get('/cityname', async (req, res) => {
     try {
         console.log(req.query);
         const { name } = req.query;
-        const cityNameURL = `https://api.api-ninjas.com/v1/city?name=${name}`;
+        const cityNameURL = `https://cors-anywhere.herokuapp.com/https://api.api-ninjas.com/v1/city?name=${name}`;
         const cityNameResponse = await fetch(cityNameURL, {
-            mode: 'no-cors',
             method: 'GET',
             headers: { 'X-Api-Key': `${apiKey}`},
         }); 
