@@ -13,7 +13,8 @@ dotenv.config();
 const corsOptions = {
     origin: [
         'https://weatherclothesrecommendation-67b3a3b0816e.herokuapp.com',
-        "http://localhost:3000"
+        "http://localhost:3000",
+        "https://www.whattoweartoday.pro"
     ],
 };
 
