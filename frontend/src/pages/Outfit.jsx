@@ -34,7 +34,7 @@ const Outfit = () => {
             }
         }}>
             <div style={{display: 'flex', justifyContent: 'center'}}>
-                 <img src={src} alt={alt} style={{width: '70%', height: '70%'}} />
+                 <img src={src} alt={alt} style={{width: '200px', height: '200px',}} />
             </div>
             <Box 
                 className="overlay" 
@@ -269,7 +269,7 @@ const Outfit = () => {
                 {weatherData ? (
                     <>
                        {backgroundVideo()}
-                        <div style={{display: 'flex', flexDirection: 'column', color: 'white', marginLeft: '15%' }}>
+                        <div style={{display: 'flex', flexDirection: 'column', color: 'white', marginLeft: '15%', position: 'absolute'}}>
                                 <h1>
                                     {`${weatherData.name}, ${weatherData.sys.country}`}
                                 </h1>
@@ -292,16 +292,14 @@ const Outfit = () => {
 
 
             <motion.div 
-                style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
+                style={{display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '10%'}}
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
             >
                 {weatherData && (
                   <>
-                    <Typography variant="h5" component="h2" textAlign="center" >
-                        {/* Recommended Outfit */}
-                    </Typography>
+
                     {weatherClothesCalculate()}
                   </>
                 )}
