@@ -11,7 +11,7 @@ import Collapse from '@mui/material/Collapse';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import '../App.css'; 
 
-const backend = 'http://localhost:8000'; 
+const backend = 'https://www.whattoweartoday.pro'; 
 
 const theme = createTheme({
     components: {
