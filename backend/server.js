@@ -25,9 +25,8 @@ app.use(express.static(path.join(__dirname + "/public")));
 
 
 app.get('/cityname', async (req, res) => {
-    console.log("backend");
+
     try {
-        console.log(req.query);
         const { name } = req.query;
         const cityNameURL = `https://api.api-ninjas.com/v1/city?name=${name}`;
         const cityNameResponse = await fetch(cityNameURL, {

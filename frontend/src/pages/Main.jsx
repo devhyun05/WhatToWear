@@ -11,7 +11,7 @@ import Collapse from '@mui/material/Collapse';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import '../App.css'; 
 
-const backend = 'https://www.whattoweartoday.pro'; 
+const backend = 'http://localhost:8000'; 
 
 const theme = createTheme({
     components: {
@@ -56,8 +56,7 @@ const Main = () => {
     const debouncedSearchValue = useDebounce(searchValue, 500);
     const inputKey = useRef(1);
 
-    useEffect(() => {
-  
+    useEffect(() => {  
         if (debouncedSearchValue) {
             fetch(`${backend}/cityname?name=${debouncedSearchValue}`)
             .then(response => response.json())
@@ -115,9 +114,7 @@ const Main = () => {
                                 onChange={(e) => setSearchValue(e.target.value)}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter') {
-                                        if (searchResultArray.length > 0) {
-                                            setSelectedOption(searchResultArray[0]);
-                                        }
+                                        
                                     }
                                   }}
                                 InputProps={{
