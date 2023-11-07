@@ -115,7 +115,9 @@ const Main = () => {
                                 onChange={(e) => setSearchValue(e.target.value)}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter') {
-                                      console.log("Enter key pressed!");
+                                        if (searchResultArray.length > 0) {
+                                            setSelectedOption(searchResultArray[0]);
+                                        }
                                     }
                                   }}
                                 InputProps={{
