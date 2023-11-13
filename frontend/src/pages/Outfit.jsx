@@ -283,6 +283,7 @@ const Outfit = () => {
 
                                 <h1>{`Temperature: ${Math.round(weatherData.main.temp - 273.15)}°C`}</h1>
                                 <h1>{`Humidity: ${weatherData.main.humidity}%`}</h1>
+                                <h2 style={{marginTop: '20%'}}>Hover Clothes to check description!</h2>
                         </div>
                     </>
                 ) : (
