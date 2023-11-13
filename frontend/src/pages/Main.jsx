@@ -85,7 +85,7 @@ const Main = () => {
 
                 <div className="search-box-wrapper" style={{marginBottom: '15%'}}>
                     <h1 style={{textAlign: 'center'}}>Search Your City</h1>
-    
+
                     <Autocomplete
                         key={inputKey.current}
                         freeSolo
@@ -94,6 +94,11 @@ const Main = () => {
                         onInputChange={(event, newValue) => {
                             setSearchValue(newValue);
                         }}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                                
+                            }
+                          }}
                         onChange={(event, newValue) => {
                             setSelectedOption(newValue);
                         }}
@@ -111,12 +116,7 @@ const Main = () => {
                             <TextField {...params}
                                 variant="outlined" 
                                 value={searchValue}
-                                onChange={(e) => setSearchValue(e.target.value)}
-                                onKeyDown={(e) => {
-                                    if (e.key === 'Enter') {
-                                        
-                                    }
-                                  }}
+                                onChange={(e) => setSearchValue(e.target.value)}                                
                                 InputProps={{
                                     ...params.InputProps,
                                     startAdornment: (                   
