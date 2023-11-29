@@ -269,7 +269,8 @@ const Outfit = () => {
                 {weatherData ? (
                     <>
                        {backgroundVideo()}
-                        <div style={{display: 'flex', flexDirection: 'column', color: 'white', marginLeft: '15%', position: 'absolute'}}>
+                        <div style={{display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(299, 299, 299, 0.4)', color: 'white', marginLeft: '15%', 
+                                     marginTop: '10%', position: 'absolute', fontSize: '15px', padding: '20px 40px', borderRadius: '10px'}}>
                                 <h1>
                                     {`${weatherData.name}, ${weatherData.sys.country}`}
                                 </h1>
@@ -283,7 +284,6 @@ const Outfit = () => {
 
                                 <h1>{`Temperature: ${Math.round(weatherData.main.temp - 273.15)}°C`}</h1>
                                 <h1>{`Humidity: ${weatherData.main.humidity}%`}</h1>
-                                <h2 style={{marginTop: '20%'}}>Hover Clothes to check description!</h2>
                         </div>
                     </>
                 ) : (
