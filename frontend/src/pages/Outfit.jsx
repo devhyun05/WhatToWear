@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-
+const backend = 'http://localhost:8000';
 
 const Outfit = () => {
     const location = useLocation(); 
@@ -13,17 +13,37 @@ const Outfit = () => {
 
     useEffect(() => {
         if (cityName) {
-            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=1ea1024f7bfa9bdeb4698e2cbefa3060`)
-            .then(response => response.json())
-            .then(data => {
-                setWeatherData(data);
-            })
-            .catch(err => {
-                console.log(err); 
-            })
+            try {
+                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=1ea1024f7bfa9bdeb4698e2cbefa3060`)
+                    .then(response => response.json())
+                    .then(weatherData => {
+                        setWeatherData(weatherData);       
+                        fetchCityImage();                
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            } catch (error) {
+                console.error("Error occurred: ", error);
+            }
         }
     }, [cityName]);
     
+    const fetchCityImage = async () => {
+        try {
+            // Then, send cityName to the /cityImage route
+            const response = await fetch(`${backend}/cityImage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: cityName }),
+            }); 
+            const imageItem = await response.json(); 
+        } catch (error) {
+            console.error("Error: ", error); 
+        }
+    }
     const OutfitImage = ({ src, alt, description }) => (
         <Box sx={{
             width: '15%', 

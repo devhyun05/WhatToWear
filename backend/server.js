@@ -5,8 +5,11 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 8000; 
 const dotenv = require('dotenv');
+const deepai = require('deepai');
 
-//s
+deepai.setApiKey(`1ca9978f-a4f6-40c1-a1a0-2b1c22b2184a`); 
+
+
 
 dotenv.config(); 
 
@@ -18,6 +21,7 @@ const corsOptions = {
     ],
 };
 
+app.use(express.json());
 // Use CORS middleware
 app.use(cors(corsOptions)); 
 
@@ -40,7 +44,15 @@ app.get('/cityname', async (req, res) => {
         console.error('Error: ', error);
         res.status(500).json({ error: 'An error occurred '}); 
     }
-})
+});
+
+app.post("/cityImage", async (req, res) => {
+    let resp = await deepai.callStandardApi("text2img", {
+        text: req.body.text 
+    }); 
+
+}); 
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);
