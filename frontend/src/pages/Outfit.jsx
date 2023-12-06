@@ -6,19 +6,33 @@ import Typography from '@mui/material/Typography';
 
 const backend = 'http://localhost:8000';
 
+
 const Outfit = () => {
     const location = useLocation(); 
     const cityName = location.state?.city; 
+    const Access_Key = "F1q2KGs1AxsrCnPGlTmEjrAEEoB_9QNXPgFk6XilOYY"
     const [weatherData, setWeatherData] = useState(null); 
+    const [cityImage, setCityImage] = useState(null); 
 
+    const url = `https://api.unsplash.com/search/photos?page=1&query=${cityName}&client_id=${Access_Key}&orientation=landscape&per_page=1`
     useEffect(() => {
         if (cityName) {
             try {
+                // Record the start time before making the API call
+                // const startTime = performance.now();
+    
                 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=1ea1024f7bfa9bdeb4698e2cbefa3060`)
                     .then(response => response.json())
                     .then(weatherData => {
-                        setWeatherData(weatherData);       
-                        fetchCityImage();                
+                        // Record the end time after receiving the API response
+                        // const endTime = performance.now();
+    
+                        // Calculate the API response time in milliseconds
+                        // const apiResponseTime = endTime - startTime;
+                        // console.log(`API Response Time: ${apiResponseTime} milliseconds`);
+    
+                        setWeatherData(weatherData);
+                        fetchCityImage();
                     })
                     .catch(err => {
                         console.log(err);
@@ -31,19 +45,24 @@ const Outfit = () => {
     
     const fetchCityImage = async () => {
         try {
-            // Then, send cityName to the /cityImage route
-            const response = await fetch(`${backend}/cityImage`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ text: cityName }),
-            }); 
-            const imageItem = await response.json(); 
+            const startTime = performance.now();
+            const response = await fetch(url); 
+            const responseJson = await response.json() 
+            const result = responseJson.results
+            console.log(result[0].links.download);            
+            setCityImage(result[0].links.download); 
+
+                     const endTime = performance.now();
+    
+                        // Calculate the API response time in milliseconds
+                        const apiResponseTime = endTime - startTime;
+                        console.log(`API Response Time: ${apiResponseTime} milliseconds`);
         } catch (error) {
             console.error("Error: ", error); 
         }
     }
+
+
     const OutfitImage = ({ src, alt, description }) => (
         <Box sx={{
             width: '15%', 
@@ -162,148 +181,39 @@ const Outfit = () => {
 
         return outfit;
     }
-        const backgroundVideo = () => {
-            let bgVideo; 
-            console.log(weatherData);
-            if (weatherData != null) {
-            if (weatherData.weather[0].description === "clear sky") {
-                console.log(`Weather Data : ${weatherData.weather[0].description}`);
-                    bgVideo = (
-                        <>
-                            <video src={"/video/clear-sky.mp4"} autoPlay loop muted
-                                                    style={{position: 'absolute', 
-                                                            objectFit: 'cover', 
-                                                            width: '100vw', 
-                                                            height: '100vh',
-                                                            zIndex: '-1'}}>
-                            </video>
-                        </>
-                    )
-                } else if (weatherData.weather[0].description === "few clouds" || weatherData.weather[0].description === "broken clouds") {
-                    bgVideo = (
-                        <>
-                            <video src={"/video/few-clouds.mp4"} autoPlay loop muted
-                                                    style={{position: 'absolute', 
-                                                            objectFit: 'cover', 
-                                                            width: '100vw', 
-                                                            height: '100vh',
-                                                            zIndex: '-1'}}>
-                            </video>                    
-                        </>
-                    )
-                } else if (weatherData.weather[0].description === "scattered clouds" || weatherData.weather[0].description === "overcast clouds") {
-                    bgVideo = (
-                        <>
-                            <video src={"/video/scattered-clouds.mp4"} autoPlay loop muted
-                                                    style={{position: 'absolute', 
-                                                            objectFit: 'cover', 
-                                                            width: '100vw', 
-                                                            height: '100vh',
-                                                            zIndex: '-1'}}>
-                            </video>                      
-                        </>
-                    )
-                } else if (weatherData.weather[0].description === "broken clouds") {
-                    bgVideo = (
-                        <>
-                            <video src={"/video/broken-cluds.mp4"} autoPlay loop muted
-                                                    style={{position: 'absolute', 
-                                                            objectFit: 'cover', 
-                                                            width: '100vw', 
-                                                            height: '100vh',
-                                                            zIndex: '-1'}}>
-                            </video>                        
-                        </>
-                    )
-                } else if (weatherData.weather[0].id === 500 || weatherData.weather[0].id === 501) {
-                    bgVideo = (
-                        <>
-                            <video src={"/video/shower-rain.mp4"} autoPlay loop muted
-                                                    style={{position: 'absolute', 
-                                                            objectFit: 'cover', 
-                                                            width: '100vw', 
-                                                            height: '100vh',
-                                                            zIndex: '-1'}}>
-                            </video>                        
-                        </>
-                    )
-                } else if (weatherData.weather[0].main === "Rain") {
-                    bgVideo = (
-                        <>
-                            <video src={"/video/rain.mp4"} autoPlay loop muted
-                                                    style={{position: 'absolute', 
-                                                            objectFit: 'cover', 
-                                                            width: '100vw', 
-                                                            height: '100vh',
-                                                            zIndex: '-1'}}>
-                            </video>                        
-                        </>
-                    )
-                } else if (weatherData.weather[0].main === "Thunderstorm") {
-                    bgVideo = (
-                        <>
-                            <video src={"/video/thunderstorm.mp4"} autoPlay loop muted
-                                                    style={{position: 'absolute', 
-                                                            objectFit: 'cover', 
-                                                            width: '100vw', 
-                                                            height: '100vh',
-                                                            zIndex: '-1'}}>
-                            </video>                        
-                        </>
-                    )
-                } else if (weatherData.weather[0].main === "Snow") {
-                    bgVideo = (
-                        <>
-                            <video src={"/video/snow.mp4"} autoPlay loop muted
-                                                    style={{position: 'absolute', 
-                                                            objectFit: 'cover', 
-                                                            width: '100vw', 
-                                                            height: '100vh',
-                                                            zIndex: '-1'}}>
-                            </video>                        
-                        </>
-                    )
-                } else if (weatherData.weather[0].main === "Mist") {
-                    bgVideo = (
-                        <>
-                            <video src={"/video/mist.mp4"} autoPlay loop muted
-                                                    style={{position: 'absolute', 
-                                                            objectFit: 'cover', 
-                                                            width: '100vw', 
-                                                            height: '100vh',
-                                                            zIndex: '-1'}}>
-                            </video>                        
-                        </>
-                    )
-                }
-            } else {
-                console.log(`Weather Data : ${weatherData}`);
-            }
-            return bgVideo;
-        }
-
+       
         return (
         <div>
  
    
                 {weatherData ? (
-                    <>
-                       {backgroundVideo()}
-                        <div style={{display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(299, 299, 299, 0.4)', color: 'white', marginLeft: '15%', 
-                                     marginTop: '10%', position: 'absolute', fontSize: '15px', padding: '20px 40px', borderRadius: '10px'}}>
-                                <h1>
-                                    {`${weatherData.name}, ${weatherData.sys.country}`}
-                                </h1>
-                                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                    <img 
-                                        src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
-                                        alt="Weather icon"
-                                    />
-                                    <h1>{`${weatherData.weather[0].description}`}</h1>
-                                </div>
+                    <>                       
+                    <div style={{backgroundImage: `url('${cityImage}')`, 
+                                 backgroundRepeat: 'no-repeat', 
+                                 backgroundSize: 'cover', 
+                                 backgroundPosition: 'center',    
+                                 position: 'absolute',                             
+                                 width: '100vw', 
+                                 height: '100vh',
+                          
+                                 }}>
+                            <div style={{display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(299, 299, 299, 0.4)', color: 'blue', marginLeft: '15%', 
+                                        marginTop: '10%', position: 'absolute', fontSize: '15px', padding: '20px 40px', borderRadius: '10px'}}>
+                                    <h1>
+                                        {`${weatherData.name}, ${weatherData.sys.country}`}
+                                    </h1>
+                                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                        <img 
+                                            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+                                            alt="Weather icon"
+                                        />
+                                        <h1>{`${weatherData.weather[0].description}`}</h1>
+                                    </div>
 
-                                <h1>{`Temperature: ${Math.round(weatherData.main.temp - 273.15)}°C`}</h1>
-                                <h1>{`Humidity: ${weatherData.main.humidity}%`}</h1>
+                                    <h1>{`Temperature: ${Math.round(weatherData.main.temp - 273.15)}°C`}</h1>
+                                    <h1>{`Humidity: ${weatherData.main.humidity}%`}</h1>
+
+                            </div>
                         </div>
                     </>
                 ) : (

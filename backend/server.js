@@ -46,13 +46,13 @@ app.get('/cityname', async (req, res) => {
     }
 });
 
-app.post("/cityImage", async (req, res) => {
-    let resp = await deepai.callStandardApi("text2img", {
-        text: req.body.text 
-    }); 
+app.get('/cityImage', async (req, res) => {
+    const searchText = req.body.text; 
+    const unsplashAPI = `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${process.env.unsplashAPIKey}&orientation=landscape&per_page=1`
+    
+    
 
-}); 
-
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);
