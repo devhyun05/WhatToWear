@@ -6,31 +6,35 @@ import Typography from '@mui/material/Typography';
 
 const backend = 'http://localhost:8000';
 
-
+let mountCount = 1; 
 const Outfit = () => {
     const location = useLocation(); 
     const cityName = location.state?.city; 
     const Access_Key = "F1q2KGs1AxsrCnPGlTmEjrAEEoB_9QNXPgFk6XilOYY"
     const [weatherData, setWeatherData] = useState(null); 
     const [cityImage, setCityImage] = useState(null); 
+    const [didMount, setDidMount] = useState(false)
 
     const url = `https://api.unsplash.com/search/photos?page=1&query=${cityName}&client_id=${Access_Key}&orientation=landscape&per_page=1`
+
     useEffect(() => {
-        if (cityName) {
+        console.log('mount: ', mountCount)
+        mountCount++; 
+        setDidMount(true)
+        return () => {
+            console.log("unmount");
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log("didMount: " + didMount)
+   
+        if (didMount) {
             try {
-                // Record the start time before making the API call
-                // const startTime = performance.now();
-    
+                console.log("api call");
                 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=1ea1024f7bfa9bdeb4698e2cbefa3060`)
                     .then(response => response.json())
                     .then(weatherData => {
-                        // Record the end time after receiving the API response
-                        // const endTime = performance.now();
-    
-                        // Calculate the API response time in milliseconds
-                        // const apiResponseTime = endTime - startTime;
-                        // console.log(`API Response Time: ${apiResponseTime} milliseconds`);
-    
                         setWeatherData(weatherData);
                         fetchCityImage();
                     })
@@ -41,7 +45,7 @@ const Outfit = () => {
                 console.error("Error occurred: ", error);
             }
         }
-    }, [cityName]);
+    }, [didMount]);
     
     const fetchCityImage = async () => {
         try {
