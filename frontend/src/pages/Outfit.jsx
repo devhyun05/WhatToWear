@@ -197,7 +197,7 @@ const Outfit = () => {
                                  height: '100vh',
                           
                                  }}>
-                            <div style={{display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(299, 299, 299, 0.4)', color: 'blue', marginLeft: '15%', 
+                            <div style={{display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(299, 299, 299, 0.4)', color: 'white', marginLeft: '15%', 
                                         marginTop: '10%', position: 'absolute', fontSize: '15px', padding: '20px 40px', borderRadius: '10px'}}>
                                     <h1>
                                         {`${weatherData.name}, ${weatherData.sys.country}`}

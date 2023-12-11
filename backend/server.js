@@ -35,7 +35,7 @@ app.get('/cityname', async (req, res) => {
         const cityNameURL = `https://api.api-ninjas.com/v1/city?name=${name}`;
         const cityNameResponse = await fetch(cityNameURL, {
             method: 'GET',
-            headers: { 'X-Api-Key': `${process.env.apikey}`},
+            headers: { 'X-Api-Key': `${process.env.COUNTRY_API_KEY}`},
         }); 
         const cityNameData = await cityNameResponse.json();
 
@@ -44,14 +44,6 @@ app.get('/cityname', async (req, res) => {
         console.error('Error: ', error);
         res.status(500).json({ error: 'An error occurred '}); 
     }
-});
-
-app.get('/cityImage', async (req, res) => {
-    const searchText = req.body.text; 
-    const unsplashAPI = `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${process.env.unsplashAPIKey}&orientation=landscape&per_page=1`
-    
-    
-
 });
 
 app.listen(PORT, () => {
